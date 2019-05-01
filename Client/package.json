@@ -3,7 +3,7 @@
   "version": "1.2.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "3.3.7",
+    "bootstrap": "^3.3.7",
     "chartist": "0.10.1",
     "node-sass": "4.6.1",
     "node-sass-chokidar": "0.0.3",
@@ -11,7 +11,7 @@
     "react": "16.2.0",
     "react-bootstrap": "0.32.1",
     "react-chartist": "0.13.1",
-    "react-dom": "16.2.0",
+    "react-dom": "^16.2.0",
     "react-google-maps": "9.4.5",
     "react-notification-system": "0.2.17",
     "react-router-dom": "4.2.2",
