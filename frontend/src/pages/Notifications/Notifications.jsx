@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { Grid, Row, Col, Alert } from "react-bootstrap";
+import { Container, Row, Col, Alert } from "react-bootstrap";
 
-import Button from "components/CustomButton/CustomButton.jsx";
+import Button from "../../components/CustomButton/CustomButton";
 
 class Notifications extends Component {
   render() {
     return (
       <div className="content">
-        <Grid fluid>
+        <Container fluid>
           <div className="card">
             <div className="header">
               <h4 className="title">Notifications</h4>
@@ -176,7 +176,7 @@ class Notifications extends Component {
               </div>
             </div>
           </div>
-        </Grid>
+        </Container>
       </div>
     );
   }

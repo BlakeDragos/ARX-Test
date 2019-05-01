@@ -1,25 +1,24 @@
 import React, { Component } from "react";
 import {
-  Grid,
+  Container,
   Row,
   Col,
   FormGroup,
-  ControlLabel,
+  FormLabel,
   FormControl
 } from "react-bootstrap";
 
-import { Card } from "components/Card/Card.jsx";
-import { FormInputs } from "components/FormInputs/FormInputs.jsx";
-import { UserCard } from "components/UserCard/UserCard.jsx";
-import Button from "components/CustomButton/CustomButton.jsx";
-
-import avatar from "assets/img/faces/face-3.jpg";
+import { Card } from "../../components/Card/Card";
+import { FormInputs } from "../../components/FormInputs/FormInputs";
+import { UserCard } from "../../components/UserCard/UserCard";
+import Button from "../../components/CustomButton/CustomButton";
+import avatar from "../../assets/img/faces/face-3.jpg";
 
 class UserProfile extends Component {
   render() {
     return (
       <div className="content">
-        <Grid fluid>
+        <Container fluid>
           <Row>
             <Col md={8}>
               <Card
@@ -113,7 +112,7 @@ class UserProfile extends Component {
                     <Row>
                       <Col md={12}>
                         <FormGroup controlId="formControlsTextarea">
-                          <ControlLabel>About Me</ControlLabel>
+                        <FormLabel>About Me</FormLabel>
                           <FormControl
                             rows="5"
                             componentClass="textarea"
@@ -163,7 +162,7 @@ class UserProfile extends Component {
               />
             </Col>
           </Row>
-        </Grid>>
+        </Container>>
       </div>
     );
   }
