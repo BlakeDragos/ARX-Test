@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
-import HeaderLinks from "../Header/HeaderLinks.jsx";
+import HeaderLinks from "../Header/HeaderLinks";
 
-import imagine from "assets/img/sidebar-3.jpg";
-import logo from "assets/img/reactlogo.png";
+import imagine from "../../assets/img/sidebar-3.jpg";
+import logo from "../../assets/img/reactlogo.png";
 
-import dashboardRoutes from "routes/dashboard.jsx";
+import dashboardRoutes from "../../routes/dashboard";
 
 class Sidebar extends Component {
   constructor(props) {

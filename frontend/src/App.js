@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Dashboard from "./pages/Dashboard/Dashboard"
+import Dashboard from "./layouts/Dashboard/Dashboard"
 import Icons from "./pages/Icons/Icons"
 import Notifications from "./pages/Notifications/Notifications"
 import TableList from "./pages/TableList/TableList"

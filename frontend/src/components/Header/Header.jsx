@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Navbar } from "react-bootstrap";
 
-import HeaderLinks from "./HeaderLinks.jsx";
+import HeaderLinks from "./HeaderLinks";
 
-import dashboardRoutes from "routes/dashboard.jsx";
+import dashboardRoutes from "../../routes/dashboard";
 
 class Header extends Component {
   constructor(props) {
@@ -57,15 +57,11 @@ class Header extends Component {
   render() {
     return (
       <Navbar fluid>
-        <Navbar.Header>
           <Navbar.Brand>
             <a href="#pablo">{this.getBrand()}</a>
           </Navbar.Brand>
           <Navbar.Toggle onClick={this.mobileSidebarToggle} />
-        </Navbar.Header>
-        <Navbar.Collapse>
           <HeaderLinks />
-        </Navbar.Collapse>
       </Navbar>
     );
   }
