@@ -1,19 +1,21 @@
 import React, { Component } from "react";
 import { NavItem, Nav } from "react-bootstrap";
+import { Link } from 'react-router-dom'
 
 class HeaderLinks extends Component {
   render() {
     return (
-      <div>
-        <Nav className="justify-content-end" variant="tabs" defaultActiveKey="/home">
+        <Nav variant="tabs" defaultActiveKey="/home">
           <NavItem>
-          <Nav.Link href="/home">Dashboard</Nav.Link>
+          <Nav.Link><Link  to="/dashboard">Dashboard</Link></Nav.Link>
           </NavItem>
           <NavItem>
-          <Nav.Link href="/Profile">Profile</Nav.Link>
+          <Nav.Link><Link  to="/user">Profile</Link></Nav.Link>
+          </NavItem>
+          <NavItem>
+          <Nav.Link><Link  to="/table">Sessions</Link></Nav.Link>
           </NavItem>
         </Nav>
-      </div>
     );
   }
 }

@@ -1,10 +1,27 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Table } from "react-bootstrap";
+import ChartistGraph from "react-chartist";
+import {
+  dataSales,
+  optionsSales,
+  responsiveSales,
+  legendSales,
+} from "../../variables/Variables";
 
 import Card from "../../components/Card/Card";
 import { thArray, tdArray } from "../../variables/Variables";
 
 class TableList extends Component {
+  createLegend(json) {
+    var legend = [];
+    for (var i = 0; i < json["names"].length; i++) {
+      var type = "fa fa-circle text-" + json["types"][i];
+      legend.push(<i className={type} key={i} />);
+      legend.push(" ");
+      legend.push(json["names"][i]);
+    }
+    return legend;
+  }
   render() {
     return (
       <div className="content">
@@ -12,8 +29,8 @@ class TableList extends Component {
           <Row>
             <Col md={12}>
               <Card
-                title="Striped Table with Hover"
-                category="Here is a subtitle for this table"
+                title="Sessions"
+                category="All of your sessions"
                 ctTableFullWidth
                 ctTableResponsive
                 content={
@@ -40,35 +57,25 @@ class TableList extends Component {
                 }
               />
             </Col>
-
             <Col md={12}>
               <Card
-                plain
-                title="Striped Table with Hover"
-                category="Here is a subtitle for this table"
-                ctTableFullWidth
-                ctTableResponsive
+                statsIcon="fa fa-history"
+                id="chartHours"
+                title="Selected Sessions"
+                category=""
+                stats=""
                 content={
-                  <Table hover>
-                    <thead>
-                      <tr>
-                        {thArray.map((prop, key) => {
-                          return <th key={key}>{prop}</th>;
-                        })}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {tdArray.map((prop, key) => {
-                        return (
-                          <tr key={key}>
-                            {prop.map((prop, key) => {
-                              return <td key={key}>{prop}</td>;
-                            })}
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </Table>
+                  <div className="ct-chart">
+                    <ChartistGraph
+                      data={dataSales}
+                      type="Line"
+                      options={optionsSales}
+                      responsiveOptions={responsiveSales}
+                    />
+                  </div>
+                }
+                legend={
+                  <div className="legend">{this.createLegend(legendSales)}</div>
                 }
               />
             </Col>
