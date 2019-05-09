@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavItem, Nav } from "react-bootstrap";
+import { NavItem, Nav, NavLink } from "reactstrap";
 import { Link } from 'react-router-dom'
 
 class HeaderLinks extends Component {
@@ -7,13 +7,13 @@ class HeaderLinks extends Component {
     return (
         <Nav variant="tabs" defaultActiveKey="/home">
           <NavItem>
-          <Nav.Link><Link  to="/dashboard">Dashboard</Link></Nav.Link>
+          <NavLink tag={Link} to="/dashboard">Dashboard</NavLink>
           </NavItem>
           <NavItem>
-          <Nav.Link><Link  to="/user">Profile</Link></Nav.Link>
+          <NavLink tag={Link} to="/user">Profile</NavLink>
           </NavItem>
           <NavItem>
-          <Nav.Link><Link  to="/table">Sessions</Link></Nav.Link>
+          <NavLink tag={Link} to="/table">Sessions</NavLink>
           </NavItem>
         </Nav>
     );

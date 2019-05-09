@@ -474,25 +474,25 @@ const iconsArray = [
 //
 // Data for Pie Chart
 var dataPie = {
-  labels: ["40%", "20%", "40%"],
-  series: [40, 20, 40]
+  labels: ["20%", "10%", "40%", "30%"],
+  series: [20, 10, 40, 30]
 };
 var legendPie = {
-  names: ["Open", "Bounce", "Unsubscribe"],
+  names: [],
   types: ["info", "danger", "warning"]
 };
 
 // Data for Line Chart
 var dataSales = {
   labels: [
-    "9:00AM",
-    "12:00AM",
-    "3:00PM",
-    "6:00PM",
-    "9:00PM",
-    "12:00PM",
-    "3:00AM",
-    "6:00AM"
+    "0:00",
+    "0:05",
+    "0:10",
+    "0:15",
+    "0:20",
+    "0:25",
+    "0:30",
+    "0:35"
   ],
   series: [
     [287, 385, 490, 492, 554, 586, 698, 695],
@@ -529,7 +529,7 @@ var responsiveSales = [
   ]
 ];
 var legendSales = {
-  names: ["Open", "Click", "Click Second Time"],
+  names: [],
   types: ["info", "danger", "warning"]
 };
 
@@ -550,8 +550,7 @@ var dataBar = {
     "Dec"
   ],
   series: [
-    [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895],
-    [412, 243, 280, 580, 453, 353, 300, 364, 368, 410, 636, 695]
+    [5, 10, 20, 20, 20, 15, 5, 20, 25, 30, 15, 5]
   ]
 };
 var optionsBar = {
@@ -575,7 +574,7 @@ var responsiveBar = [
   ]
 ];
 var legendBar = {
-  names: ["Tesla Model S", "BMW 5 Series"],
+  names: [],
   types: ["info", "danger"]
 };
 

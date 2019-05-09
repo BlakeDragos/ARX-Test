@@ -1,20 +1,26 @@
 {
-  "name": "arx-test",
+  "name": "ARX-Test",
   "version": "1.0.0",
-  "description": "",
+  "description": "ARX Demo",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BlakeDragos/ARX-Test.git"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'frontend/*'\" \"npm run frontend\"",
+    "frontend": "cd frontend && npm run start",
+    "seed": "node scripts/seedDB.js",
+    "install": "cd frontend && npm install",
+    "build": "cd frontend && npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/BlakeDragos/ARX-Test/issues"
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.7"
   },
-  "homepage": "https://github.com/BlakeDragos/ARX-Test#readme"
+  "dependencies": {
+    "express": "^4.16.3",
+    "if-env": "^1.0.4"
+  }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Navbar } from "react-bootstrap";
+import { Navbar, Nav, NavbarBrand, NavbarToggler } from "reactstrap";
 
 import HeaderLinks from "./HeaderLinks";
 
@@ -56,12 +56,14 @@ class Header extends Component {
   }
   render() {
     return (
-      <Navbar fluid>
-          <Navbar.Brand>
-            <a href="#pablo">{this.getBrand()}</a>
-          </Navbar.Brand>
-          <Navbar.Toggle onClick={this.mobileSidebarToggle} />
+      <Navbar>
+          <NavbarBrand>
+            <a href="#fill">{this.getBrand()}</a>
+          </NavbarBrand>
+          <NavbarToggler onClick={this.mobileSidebarToggle} />
+          <Nav tabs>
           <HeaderLinks />
+          </Nav>
       </Navbar>
     );
   }
