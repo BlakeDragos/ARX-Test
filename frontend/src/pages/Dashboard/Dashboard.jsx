@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ChartistGraph from "react-chartist";
 import { Container, Row, Col } from "react-bootstrap";
-
+import API from "../../utils/API"
 import { Card } from "../../components/Card/Card";
 import { StatsCard } from "../../components/StatsCard/StatsCard";
 import {
@@ -17,6 +17,14 @@ import {
 } from "../../variables/Variables";
 
 class Dashboard extends Component {
+  state = {
+    output: 0,
+    sessions: 0,
+    percentIncrease: 0,
+  };
+  componentDidMount(){
+    this.loadData();
+  }
   createLegend(json) {
     var legend = [];
     for (var i = 0; i < json["names"].length; i++) {
@@ -27,6 +35,26 @@ class Dashboard extends Component {
     }
     return legend;
   }
+  loadData = () => {
+    let output = 0;
+    let body = {
+      name: "Blake Dragos"
+    }
+    API.getData(body)
+      .then(res => {
+        for (let i = 0; i<res.data.length ; i++){
+          output += parseInt(res.data[i].Output)
+        }
+        let percent =  Math.round(((res.data[res.data.length-1].Output - res.data[0].Output)/res.data[0].Output)*100)
+        console.log(output)
+        this.setState({
+          output: output,
+          sessions: res.data.length,
+          percentIncrease: percent
+        })
+      })
+      .catch(err => console.log(err));
+  }
   render() {
     return (
       <div className="content">
@@ -36,16 +64,16 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-gym text-dark" />}
                 statsText="Total Weight Lifted (lbs)"
-                statsValue="725"
+                statsValue={this.state.output}
                 statsIcon={<i className="fa fa-refresh" />}
-                statsIconText="Updated now"
+                statsIconText="All Time"
               />
             </Col>
             <Col lg={3} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-menu text-success" />}
                 statsText="Sessions Completed"
-                statsValue="20/22"
+                statsValue={this.state.sessions}
                 statsIcon={<i className="fa fa-calendar-o" />}
                 statsIconText="Last day"
               />
@@ -54,7 +82,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-graph1 text-primary" />}
                 statsText="Percent Output increase"
-                statsValue="20%"
+                statsValue={this.state.percentIncrease + "%"}
                 statsIcon={<i className="fa fa-clock-o" />}
                 statsIconText="Just now"
               />

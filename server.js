@@ -10,36 +10,97 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("frontend/build"));
 }
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 // db.Login.create({
 //   Email: "test",
 //   password: "password",
 //   Client: "Blake Dragos"
 // })
 
-  // db.Sessions.create({
-  //   Client: "Blake Dragos",
-  //   ClientId: "105344EC-07A7-4660-908B-339D47199A6D",
-  //   Exercise: "Decline Press",
-  //   Protocol: "Reps (6)",
-  //   MovementMode: "Automatic",
-  //   StartPosition: 27.73,
-  //   EndPosition: 20.703,
-  //   StartToEndTime: 4.8,
-  //   PauseAfterEndPosition: 0,
-  //   EndToStartSpeed: 2.9,
-  //   PauseAfterStartPosition: 3,
-  //   NumOfReps: 6,
-  //   Finished: "Yes",
-  //   ExerciseTime: "01:04.02",
-  //   Intensity: 45,
-  //   Max: 116,
-  //   Output: 288,
-  // })
+//   db.Sessions.create({
+//     Client: "Blake Dragos",
+//     ClientId: "105344EC-07A7-4660-908B-339D47199A6D",
+//     Exercise: "Decline Press",
+//     Protocol: "Reps (6)",
+//     MovementMode: "Automatic",
+//     StartPosition: 27.73,
+//     EndPosition: 20.703,
+//     StartToEndTime: 4.8,
+//     PauseAfterEndPosition: 0,
+//     EndToStartSpeed: 2.9,
+//     PauseAfterStartPosition: 3,
+//     NumOfReps: 6,
+//     Finished: "Yes",
+//     ExerciseTime: "01:04.02",
+//     Intensity: 45,
+//     Max: 116,
+//     Output: 288,
+//   })
+//   db.Sessions.create({
+//     Client: "Blake Dragos",
+//     ClientId: "105344EC-07A7-4660-908B-339D47199A6D",
+//     Exercise: "Decline Press",
+//     Protocol: "Reps (6)",
+//     MovementMode: "Automatic",
+//     StartPosition: 27.73,
+//     EndPosition: 20.703,
+//     StartToEndTime: 4.8,
+//     PauseAfterEndPosition: 0,
+//     EndToStartSpeed: 2.9,
+//     PauseAfterStartPosition: 3,
+//     NumOfReps: 6,
+//     Finished: "Yes",
+//     ExerciseTime: "01:04.02",
+//     Intensity: 57,
+//     Max: 140,
+//     Output: 364,
+//   })
+//   db.Sessions.create({
+//     Client: "Blake Dragos",
+//     ClientId: "105344EC-07A7-4660-908B-339D47199A6D",
+//     Exercise: "Decline Press",
+//     Protocol: "Reps (6)",
+//     MovementMode: "Automatic",
+//     StartPosition: 27.73,
+//     EndPosition: 20.703,
+//     StartToEndTime: 4.8,
+//     PauseAfterEndPosition: 0,
+//     EndToStartSpeed: 2.9,
+//     PauseAfterStartPosition: 3,
+//     NumOfReps: 6,
+//     Finished: "Yes",
+//     ExerciseTime: "01:04.02",
+//     Intensity: 37,
+//     Max: 110,
+//     Output: 246,
+//   })
+  
+//   db.Sessions.create({
+//     Client: "Blake Dragos",
+//     ClientId: "105344EC-07A7-4660-908B-339D47199A6D",
+//     Exercise: "Decline Press",
+//     Protocol: "Reps (6)",
+//     MovementMode: "Automatic",
+//     StartPosition: 27.73,
+//     EndPosition: 20.703,
+//     StartToEndTime: 4.8,
+//     PauseAfterEndPosition: 0,
+//     EndToStartSpeed: 2.9,
+//     PauseAfterStartPosition: 3,
+//     NumOfReps: 6,
+//     Finished: "Yes",
+//     ExerciseTime: "01:04.02",
+//     Intensity: 51,
+//     Max: 148,
+//     Output: 343,
+//   })
 
-app.get("/api/dash", function (req, res) {
+app.post("/api/dash", function (req, res) {
   db.Sessions.findAll({
     where: {
-      Client: "Blake Dragos"
+      Client: req.body.name
     }
   }).then(function (result) {
     res.json(result);
