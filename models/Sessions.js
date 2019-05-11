@@ -4,36 +4,101 @@ module.exports = function(sequelize, DataTypes) {
   var Sessions = sequelize.define(
     "Sessions",
     {
-      userName: {
-        type: DataTypes.STRING(20),
+      Client: {
+        type: DataTypes.STRING(35),
         allowNull: false,
-        references: {
-          model: "login",
-          key: "UserName"
-        },
-        field: "UserName"
+        field: "Client"
       },
-      output: {
-        type: DataTypes.INTEGER(5000),
+      ClientId: {
+        type: DataTypes.STRING(40),
         allowNull: false,
-        field: "output"
+        field: "ClientId"
       },
-      set: {
+      Exercise: {
         type: DataTypes.STRING(30),
         allowNull: false,
-        field: "set"
+        field: "Exercise"
       },
-      contactInfo: {
+      Protocol: {
+        type: DataTypes.STRING(30),
+        allowNull: false,
+        field: "Protocol"
+      },
+      MovementMode: {
         type: DataTypes.STRING(20),
         allowNull: false,
-        field: "ContactInfo"
+        field: "MovementMode"
       },
-      bio: {
-        type: DataTypes.STRING(255),
+      MotorSpeed: {
+        type: DataTypes.STRING(20),
+        allowNull: true,
+        field: "MotorSpeed"
+      },
+      StartPosition: {
+        type: DataTypes.FLOAT(5),
+        allowNull: true,
+        field: "StartPosition"
+      },
+      EndPosition: {
+        type: DataTypes.FLOAT(5),
+        allowNull: true,
+        field: "EndPosition"
+      },
+      StartToEndTime: {
+        type: DataTypes.FLOAT(5),
+        allowNull: true,
+        field: "StartToEndTime"
+      },
+      PauseAfterEndPosition: {
+        type: DataTypes.FLOAT(5),
+        allowNull: true,
+        field: "PauseAfterEndPosition"
+      },
+      EndToStartSpeed: {
+        type: DataTypes.FLOAT(5),
+        allowNull: true,
+        field: "EndToStartSpeed"
+      },
+      PauseAfterStartPosition: {
+        type: DataTypes.FLOAT(5),
+        allowNull: true,
+        field: "PauseAfterStartPosition"
+      },
+      NumOfReps: {
+        type: DataTypes.FLOAT(5),
+        allowNull: true,
+        field: "NumOfReps"
+      },
+      CoutdownTimer: {
+        type: DataTypes.FLOAT(5),
+        allowNull: true,
+        field: "CoutdownTimer"
+      },
+      Finished: {
+        type: DataTypes.STRING(10),
         allowNull: false,
-        defaultValue: "I'M A LOSSER",
-        field: "Bio"
-      }
+        field: "Finished"
+      },
+      ExerciseTime: {
+        type: DataTypes.TIME,
+        allowNull: false,
+        field: "ExerciseTime"
+      },
+      Intensity: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: "Intensity"
+      },
+      Max: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: "Max"
+      },
+      Output: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: "Output"
+      },
     },
     {
       tableName: "sessions"

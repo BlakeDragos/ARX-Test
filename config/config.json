@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "Filbert_8",
-    "database": "JobSiteDB",
+    "database": "ARX",
     "host": "localhost",
     "dialect": "mysql"
   },

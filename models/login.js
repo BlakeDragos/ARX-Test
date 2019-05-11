@@ -4,28 +4,21 @@ module.exports = function(sequelize, DataTypes) {
   var Login = sequelize.define(
     "Login",
     {
-      // id: {
-      //   type: DataTypes.INTEGER(11),
-      //   allowNull: false,
-      //   primaryKey: true,
-      //   field: "id"
-      // },
-      userName: {
-        type: DataTypes.STRING(20),
+      Email: {
+        type: DataTypes.STRING(35),
         allowNull: false,
         unique: true,
-        field: "UserName"
+        field: "Email"
       },
       password: {
         type: DataTypes.STRING(45),
         allowNull: false,
         field: "Password"
       },
-      status: {
-        type: DataTypes.INTEGER(1),
-        allowNull: true,
-        defaultValue: "0",
-        field: "Status"
+      Client: {
+        type: DataTypes.STRING(35),
+        allowNull: false,
+        field: "Client"
       }
     },
     {
