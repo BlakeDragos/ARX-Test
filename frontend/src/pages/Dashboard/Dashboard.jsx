@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ChartistGraph from "react-chartist";
-import { Container, Row, Col } from "react-bootstrap";
-import API from "../../utils/API"
+import { Container, Row, Col} from "reactstrap";
 import { Card } from "../../components/Card/Card";
 import { StatsCard } from "../../components/StatsCard/StatsCard";
 import {
@@ -17,14 +16,15 @@ import {
 } from "../../variables/Variables";
 
 class Dashboard extends Component {
-  state = {
-    output: 0,
-    sessions: 0,
-    percentIncrease: 0,
-  };
-  componentDidMount(){
-    this.loadData();
-  }
+
+    state = {
+      exercise: "",
+      pass: [],
+      output: 0,
+      sessions: 0,
+      percentIncrease: 0,
+    };
+
   createLegend(json) {
     var legend = [];
     for (var i = 0; i < json["names"].length; i++) {
@@ -35,31 +35,67 @@ class Dashboard extends Component {
     }
     return legend;
   }
-  loadData = () => {
-    let output = 0;
-    let body = {
-      name: "Blake Dragos"
-    }
-    API.getData(body)
-      .then(res => {
-        for (let i = 0; i<res.data.length ; i++){
-          output += parseInt(res.data[i].Output)
+  componentDidMount(){
+    this.reMount();
+  }
+  reMount() {
+      let data = this.props.pass;
+      if (data.length !== 0) {
+        console.log(data);
+        let output = 0;
+        for (let i = 0; i < data.length; i++) {
+          output += parseInt(data[i].Output)
         }
-        let percent =  Math.round(((res.data[res.data.length-1].Output - res.data[0].Output)/res.data[0].Output)*100)
-        console.log(output)
+
+        let percent = Math.round(((data[data.length - 1].Output - data[0].Output) / data[0].Output) * 100)
         this.setState({
+          exercise: data.exercise,
           output: output,
-          sessions: res.data.length,
+          sessions: data.length,
           percentIncrease: percent
         })
-      })
-      .catch(err => console.log(err));
+      }
   }
+
+
+  componentDidUpdate(prevState) {
+    this.seperateData(prevState);
+  }
+  seperateData(prevState) {
+    if (this.state.exercise !== prevState.exercise) {
+      let data = this.props.pass;
+      if (data.length !== 0) {
+        console.log(data);
+        let output = 0;
+        for (let i = 0; i < data.length; i++) {
+          output += parseInt(data[i].Output)
+        }
+
+        let percent = Math.round(((data[data.length - 1].Output - data[0].Output) / data[0].Output) * 100)
+        this.setState({
+          exercise: data.exercise,
+          output: output,
+          sessions: data.length,
+          percentIncrease: percent
+        })
+      }
+    }
+  }
+
   render() {
     return (
       <div className="content">
         <Container fluid>
           <Row>
+            <Col lg={3} sm={6}>
+              <StatsCard
+                bigIcon={<i className="pe-7s-gym text-dark" />}
+                statsText="Total Weight Lifted (lbs)"
+                statsValue={this.state.output}
+                statsIcon={<i className="fa fa-refresh" />}
+                statsIconText="All Time"
+              />
+            </Col>
             <Col lg={3} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-gym text-dark" />}

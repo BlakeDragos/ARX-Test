@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import NotificationSystem from "react-notification-system";
-
+import DashboardPg from "../../pages/Dashboard/Dashboard";
+import UserProfile from "../../pages/UserProfile/UserProfile";
+import TableList from "../../pages/TableList/TableList";
+import API from "../../utils/API"
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Sidebar from "../../components/Sidebar/Sidebar";
 
 import { style } from "../../variables/Variables.jsx";
-
-import dashboardRoutes from "../../routes/dashboard";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -16,7 +17,8 @@ class Dashboard extends Component {
     this.componentDidMount = this.componentDidMount.bind(this);
     this.handleNotificationClick = this.handleNotificationClick.bind(this);
     this.state = {
-      _notificationSystem: null
+      _notificationSystem: null,
+      pass: []
     };
   }
   handleNotificationClick(position) {
@@ -33,6 +35,7 @@ class Dashboard extends Component {
       autoDismiss: 5
     });
   }
+
   componentDidMount() {
     this.setState({ _notificationSystem: this.refs.notificationSystem });
     var _notificationSystem = this.refs.notificationSystem;
@@ -48,6 +51,9 @@ class Dashboard extends Component {
       autoDismiss: 15
     });
   }
+  componentWillMount(){
+    this.loadData();
+  }
   componentDidUpdate(e) {
     if (
       window.innerWidth < 993 &&
@@ -62,6 +68,18 @@ class Dashboard extends Component {
       this.refs.mainPanel.scrollTop = 0;
     }
   }
+  loadData = () => {
+    let body = {
+      name: "Blake Dragos"
+    }
+    API.getData(body)
+      .then(res => {
+        let response = res.data
+        this.setState({pass: response});
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
     return (
       <div className="wrapper">
@@ -70,13 +88,10 @@ class Dashboard extends Component {
         <div id="main-panel" className="main-panel" ref="mainPanel">
           <Header {...this.props} />
           <Switch>
-            {dashboardRoutes.map((prop, key) => {
-              if (prop.redirect)
-                return <Redirect from={prop.path} to={prop.to} key={key} />;
-              return (
-                <Route path={prop.path} component={prop.component} key={key} />
-              );
-            })}
+              {/* <Redirect from="/" to="/dashboard"/>; */}
+              <Route path="/dashboard" render={(routerProps) => <DashboardPg {...routerProps} {...this.state}/>}/>
+              <Route path="/user" render={(routerProps) => <UserProfile {...routerProps} pass = {this.state.pass}/>}/>
+              <Route path="/table" render={(routerProps) => <TableList {...routerProps} pass = {this.state.pass}/>}/>
           </Switch>
           <Footer />
         </div>
