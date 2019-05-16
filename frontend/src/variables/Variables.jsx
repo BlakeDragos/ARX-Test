@@ -485,14 +485,18 @@ var legendPie = {
 // Data for Line Chart
 var dataSales = {
   labels: [
-    "0:00",
-    "0:05",
-    "0:10",
-    "0:15",
-    "0:20",
-    "0:25",
-    "0:30",
-    "0:35"
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "Mai",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
   ],
   series: [
     [287, 385, 490, 492, 554, 586, 698, 695],

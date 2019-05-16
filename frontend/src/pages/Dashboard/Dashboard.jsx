@@ -23,6 +23,8 @@ class Dashboard extends Component {
       output: 0,
       sessions: 0,
       percentIncrease: 0,
+      recentDate: "",
+      recentOutput: 0,
     };
 
   createLegend(json) {
@@ -65,18 +67,94 @@ class Dashboard extends Component {
     if (this.state.exercise !== prevState.exercise) {
       let data = this.props.pass;
       if (data.length !== 0) {
-        console.log(data);
+        let outputHolder = 0;
+        let empty = [];
+        let DateSplit = [];
         let output = 0;
+        let SessionOutputArray = [];
+        let recentOutput = 0;
+        let firstOutput = 0;
+        let DeclinePress = [];
+        let InclinePress = [];
+        let HorizontalPress = [];
+        let TricepsExtension = [];
+        let BicepsCurl = [];
+        let OverheadPress = [];
+        let PullDown = [];
+        let Row = [];
+        let LegPressAlpha = [];
+        let Alpha = [];
         for (let i = 0; i < data.length; i++) {
+          switch (data[i].Exercise){
+            case "Decline Press":
+            DeclinePress.push(data[i]);
+            break;
+            case "Incline Press":
+            InclinePress.push(data[i]);
+            break;
+            case "Horizontal Press":
+            HorizontalPress.push(data[i]);
+            break;
+            case "Triceps Extension":
+            TricepsExtension.push(data[i]);
+            break;
+            case "BicepsCurl":
+            BicepsCurl.push(data[i]);
+            break;
+            case "Overhead Press":
+            OverheadPress.push(data[i]);
+            break;
+            case "Pull Down":
+            PullDown.push(data[i]);
+            break;
+            case "Row":
+            Row.push(data[i]);
+            break;
+            case "Leg Press-Alpha":
+            LegPressAlpha.push(data[i]);
+            break;
+            default:
+            Alpha.push(data[i]);
+          }
+
+
+          let compare1 = data[i].createdAt.split("T");
+          let compare2;
+          if(typeof data[i+1] !== 'undefined'){
+            compare2 = data[i+1].createdAt.split("T");
+            if(compare1[0] === compare2[0]){
+              empty.push(data[i]);
+              outputHolder += parseInt(data[i].Output);
+            }else{
+              empty.push(data[i]);
+              outputHolder += parseInt(data[i].Output);
+              DateSplit.push(empty);
+              empty = [];
+              SessionOutputArray.push(outputHolder);
+              outputHolder = 0;
+            }
+          }else{
+            empty.push(data[i]);
+            outputHolder += parseInt(data[i].Output);
+            DateSplit.push(empty);
+            SessionOutputArray.push(outputHolder);
+          }
           output += parseInt(data[i].Output)
         }
+        let recentSession = DateSplit[DateSplit.length -1];
+        let recentDate = recentSession[0].createdAt.split("T");
+        console.log(SessionOutputArray);
+        recentOutput = SessionOutputArray[SessionOutputArray.length-1];
+        firstOutput = SessionOutputArray[0];
 
-        let percent = Math.round(((data[data.length - 1].Output - data[0].Output) / data[0].Output) * 100)
+        let percent = Math.round(((recentOutput - firstOutput) / firstOutput) * 100)
         this.setState({
           exercise: data.exercise,
           output: output,
           sessions: data.length,
-          percentIncrease: percent
+          percentIncrease: percent,
+          recentOutput: recentOutput,
+          recentDate: recentDate[0]
         })
       }
     }
@@ -90,10 +168,10 @@ class Dashboard extends Component {
             <Col lg={3} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-gym text-dark" />}
-                statsText="Total Weight Lifted (lbs)"
-                statsValue={this.state.output}
+                statsText="Total Volume Output last Session (lbs)"
+                statsValue={this.state.recentOutput}
                 statsIcon={<i className="fa fa-refresh" />}
-                statsIconText="All Time"
+                statsIconText={this.state.recentDate}
               />
             </Col>
             <Col lg={3} sm={6}>
@@ -111,7 +189,7 @@ class Dashboard extends Component {
                 statsText="Sessions Completed"
                 statsValue={this.state.sessions}
                 statsIcon={<i className="fa fa-calendar-o" />}
-                statsIconText="Last day"
+                statsIconText={this.state.recentDate}
               />
             </Col>
             <Col lg={3} sm={6}>
@@ -120,7 +198,7 @@ class Dashboard extends Component {
                 statsText="Percent Output increase"
                 statsValue={this.state.percentIncrease + "%"}
                 statsIcon={<i className="fa fa-clock-o" />}
-                statsIconText="Just now"
+                statsIconText={this.state.recentDate}
               />
             </Col>
           </Row>
@@ -129,9 +207,9 @@ class Dashboard extends Component {
               <Card
                 statsIcon="fa fa-history"
                 id="chartHours"
-                title="Session Comparison"
-                category="This Week"
-                stats="Updated"
+                title="Volume Output Over A Year"
+                category={this.state.recentDate}
+                stats="Up To Date"
                 content={
                   <div className="ct-chart">
                     <ChartistGraph
@@ -174,9 +252,9 @@ class Dashboard extends Component {
             <Col md={4}>
               <Card
                 statsIcon="fa fa-clock-o"
-                title="Output Each Session"
-                category="This Week"
-                stats="update"
+                title="Exercise Breakdown"
+                category="All Time"
+                stats={this.state.recentDate}
                 content={
                   <div
                     id="chartPreferences"
