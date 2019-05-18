@@ -37,19 +37,19 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    // this.setState({ _notificationSystem: this.refs.notificationSystem });
-    // var _notificationSystem = this.refs.notificationSystem;
-    // _notificationSystem.addNotification({
-    //   title: <span data-notify="icon" className="pe-7s-gift" />,
-    //   message: (
-    //     <div>
-    //       Welcome to the <b>ARX web-app</b>
-    //     </div>
-    //   ),
-    //   level: "success",
-    //   position: "tr",
-    //   autoDismiss: 15
-    // });
+    this.setState({ _notificationSystem: this.refs.notificationSystem });
+    var _notificationSystem = this.refs.notificationSystem;
+    _notificationSystem.addNotification({
+      title: <span data-notify="icon" className="pe-7s-gift" />,
+      message: (
+        <div>
+          Welcome to the <b>ARX web-app</b>
+        </div>
+      ),
+      level: "success",
+      position: "tr",
+      autoDismiss: 15
+    });
   }
   componentWillMount(){
     this.loadData();
@@ -89,9 +89,9 @@ class Dashboard extends Component {
           <Header {...this.props} />
           <Switch>
               {/* <Redirect from="/" to="/dashboard"/>; */}
-              <Route path="/dashboard" render={(routerProps) => <DashboardPg {...routerProps} {...this.state}/>}/>
-              <Route path="/user" render={(routerProps) => <UserProfile {...routerProps} {...this.state}/>}/>
-              <Route path="/table" render={(routerProps) => <TableList {...routerProps} {...this.state}/>}/>
+              <Route exact path="/dashboard" render={(routerProps) => <DashboardPg {...routerProps} {...this.state}/>}/>
+              <Route exact path="/user" render={(routerProps) => <UserProfile {...routerProps} {...this.state}/>}/>
+              <Route exact path="/table" render={(routerProps) => <TableList {...routerProps} {...this.state}/>}/>
           </Switch>
           <Footer />
         </div>

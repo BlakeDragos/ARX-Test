@@ -3,12 +3,6 @@ import ChartistGraph from "react-chartist";
 import { Container, Row, Col } from "reactstrap";
 import { Card } from "../../components/Card/Card";
 import { StatsCard } from "../../components/StatsCard/StatsCard";
-import {
-  dataPie,
-  legendPie,
-  legendSales,
-  legendBar
-} from "../../variables/Variables";
 
 class Dashboard extends Component {
 
@@ -21,7 +15,14 @@ class Dashboard extends Component {
     recentDate: "",
     recentOutput: 0,
     SessionOutputArray: [],
-    firstDate: ""
+    firstDate: "",
+    push: 0,
+    pull: 0,
+    legs: 0,
+    bar0: [],
+    bar1: [],
+    bar2: [],
+    bar3: []
   };
 
   createLegend(json) {
@@ -35,115 +36,11 @@ class Dashboard extends Component {
     return legend;
   }
   componentDidMount() {
-    this.reMount();
+    this.dataCode();
   }
-  reMount() {
+
+  dataCode(){
     let data = this.props.pass;
-    if (data.length !== 0) {
-      let outputHolder = 0;
-      let empty = [];
-      let DateSplit = [];
-      let output = 0;
-      let SessionOutputArray = [];
-      let recentOutput = 0;
-      let firstOutput = 0;
-      let DeclinePress = [];
-      let InclinePress = [];
-      let HorizontalPress = [];
-      let TricepsExtension = [];
-      let BicepsCurl = [];
-      let OverheadPress = [];
-      let PullDown = [];
-      let Row = [];
-      let LegPressAlpha = [];
-      let Alpha = [];
-      for (let i = 0; i < data.length; i++) {
-        switch (data[i].Exercise) {
-          case "Decline Press":
-            DeclinePress.push(data[i]);
-            break;
-          case "Incline Press":
-            InclinePress.push(data[i]);
-            break;
-          case "Horizontal Press":
-            HorizontalPress.push(data[i]);
-            break;
-          case "Triceps Extension":
-            TricepsExtension.push(data[i]);
-            break;
-          case "BicepsCurl":
-            BicepsCurl.push(data[i]);
-            break;
-          case "Overhead Press":
-            OverheadPress.push(data[i]);
-            break;
-          case "Pull Down":
-            PullDown.push(data[i]);
-            break;
-          case "Row":
-            Row.push(data[i]);
-            break;
-          case "Leg Press-Alpha":
-            LegPressAlpha.push(data[i]);
-            break;
-          default:
-            Alpha.push(data[i]);
-        }
-
-
-        let compare1 = data[i].createdAt.split("T");
-        let compare2;
-        if (typeof data[i + 1] !== 'undefined') {
-          compare2 = data[i + 1].createdAt.split("T");
-          if (compare1[0] === compare2[0]) {
-            empty.push(data[i]);
-            outputHolder += parseInt(data[i].Output);
-          } else {
-            empty.push(data[i]);
-            outputHolder += parseInt(data[i].Output);
-            DateSplit.push(empty);
-            empty = [];
-            SessionOutputArray.push(outputHolder);
-            outputHolder = 0;
-          }
-        } else {
-          empty.push(data[i]);
-          outputHolder += parseInt(data[i].Output);
-          DateSplit.push(empty);
-          SessionOutputArray.push(outputHolder);
-        }
-        output += parseInt(data[i].Output)
-      }
-      console.log(DateSplit);
-      let recentSession = DateSplit[DateSplit.length - 1];
-      let recentDate = recentSession[0].createdAt.split("T");
-      let FirstDateSessions = DateSplit[0];
-      let FirstDate = FirstDateSessions[0].createdAt.split("T");
-      console.log(SessionOutputArray);
-      recentOutput = SessionOutputArray[SessionOutputArray.length - 1];
-      firstOutput = SessionOutputArray[0];
-
-      let percent = Math.round(((recentOutput - firstOutput) / firstOutput) * 100)
-      this.setState({
-        exercise: data.exercise,
-        output: output,
-        sessions: DateSplit.length,
-        percentIncrease: percent,
-        recentOutput: recentOutput,
-        recentDate: recentDate[0],
-        SessionOutputArray: SessionOutputArray,
-        firstDate: FirstDate
-      })
-    }
-  }
-
-
-  componentDidUpdate(prevState) {
-    this.seperateData(prevState);
-  }
-  seperateData(prevState) {
-    if (this.state.exercise !== prevState.exercise) {
-      let data = this.props.pass;
       if (data.length !== 0) {
         let outputHolder = 0;
         let empty = [];
@@ -152,47 +49,76 @@ class Dashboard extends Component {
         let SessionOutputArray = [];
         let recentOutput = 0;
         let firstOutput = 0;
-        let DeclinePress = [];
-        let InclinePress = [];
-        let HorizontalPress = [];
-        let TricepsExtension = [];
-        let BicepsCurl = [];
-        let OverheadPress = [];
-        let PullDown = [];
-        let Row = [];
-        let LegPressAlpha = [];
-        let Alpha = [];
+        let Push = [];
+        let Pull = [];
+        let Legs = [];
+        let twoYears = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        let lastYear = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        let thisYear = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        let nextYear = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         for (let i = 0; i < data.length; i++) {
           switch (data[i].Exercise) {
             case "Decline Press":
-              DeclinePress.push(data[i]);
+              Push.push(data[i]);
               break;
             case "Incline Press":
-              InclinePress.push(data[i]);
+              Push.push(data[i]);
               break;
             case "Horizontal Press":
-              HorizontalPress.push(data[i]);
+              Push.push(data[i]);
+              break;
+            case "Chest Press Alpha":
+              Push.push(data[i]);
               break;
             case "Triceps Extension":
-              TricepsExtension.push(data[i]);
+              Push.push(data[i]);
               break;
-            case "BicepsCurl":
-              BicepsCurl.push(data[i]);
+            case "Biceps Curl":
+              Pull.push(data[i]);
               break;
             case "Overhead Press":
-              OverheadPress.push(data[i]);
+              Push.push(data[i]);
               break;
             case "Pull Down":
-              PullDown.push(data[i]);
+              Pull.push(data[i]);
               break;
             case "Row":
-              Row.push(data[i]);
+              Pull.push(data[i]);
               break;
             case "Leg Press-Alpha":
-              LegPressAlpha.push(data[i]);
+              Legs.push(data[i]);
               break;
             default:
-              Alpha.push(data[i]);
+              break;
+          }
+          let yearCheck = data[i].createdAt.split("T")
+          let yearCheck2 = yearCheck[0].split("-")
+          let previous;
+          let next;
+          console.log(yearCheck2[0]);
+          switch (yearCheck2[0]) {
+            case "2019":
+              previous = thisYear[(parseInt(yearCheck2[1])-1)];
+              next = previous + 1;
+              thisYear.splice((parseInt(yearCheck2[1])-1), 1, next);
+              break;
+            case "2018":
+              previous = lastYear[(parseInt(yearCheck2[1])-1)];
+              next = previous + 1;
+              lastYear.splice((parseInt(yearCheck2[1])-1), 1, next);
+              break;
+            case "2017":
+              previous = twoYears[(parseInt(yearCheck2[1])-1)];
+              next = previous + 1;
+              twoYears.splice((parseInt(yearCheck2[1])-1), 1, next);
+              break;
+            case "2020":
+              previous = nextYear[(parseInt(yearCheck2[1])-1)];
+              next = previous + 1;
+              nextYear.splice((parseInt(yearCheck2[1])-1), 1, next);
+              break;
+            default:
+              break;
           }
 
 
@@ -219,15 +145,13 @@ class Dashboard extends Component {
           }
           output += parseInt(data[i].Output)
         }
-        console.log(DateSplit);
         let recentSession = DateSplit[DateSplit.length - 1];
         let recentDate = recentSession[0].createdAt.split("T");
         let FirstDateSessions = DateSplit[0];
         let FirstDate = FirstDateSessions[0].createdAt.split("T");
-        console.log(SessionOutputArray);
         recentOutput = SessionOutputArray[SessionOutputArray.length - 1];
         firstOutput = SessionOutputArray[0];
-
+        console.log(lastYear);
         let percent = Math.round(((recentOutput - firstOutput) / firstOutput) * 100)
         this.setState({
           exercise: data.exercise,
@@ -237,9 +161,21 @@ class Dashboard extends Component {
           recentOutput: recentOutput,
           recentDate: recentDate[0],
           SessionOutputArray: SessionOutputArray,
-          firstDate: FirstDate[0]
+          firstDate: FirstDate[0],
+          push: Push.length,
+          pull: Pull.length,
+          legs: Legs.length,
+          bar0: twoYears,
+          bar1: lastYear,
+          bar2: thisYear,
+          bar3: nextYear,
         })
       }
+  }
+
+  componentDidUpdate(prevState) {
+    if (this.state.exercise !== prevState.exercise) {
+      this.dataCode();
     }
   }
 
@@ -280,40 +216,63 @@ class Dashboard extends Component {
         }
       ]
     ];
-//////////////////////////////////////////////// chart ^
-var dataBar = {
-  labels: [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec"
-  ],
-  series: [
-    [5, 10, 20, 20, 20, 15, 5, 20, 25, 30, 15, 5]
-  ]
-};
-var responsiveBar = [
-  [
-    "screen and (max-width: 640px)",
-    {
-      seriesBarDistance: 5,
-      axisX: {
-        labelInterpolationFnc: function(value) {
-          return value[0];
+
+    var legendSales = {
+      names: [],
+      types: ["info", "danger", "warning"]
+    };
+    //////////////////////////////////////////////// chart ^
+    var dataBar = {
+      labels: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+      ],
+      series: [
+      ]
+    };
+    dataBar.series.push(this.state.bar2);
+    dataBar.series.push(this.state.bar0);
+    dataBar.series.push(this.state.bar1);
+    dataBar.series.push(this.state.bar3);
+    var responsiveBar = [
+      [
+        "screen and (max-width: 640px)",
+        {
+          seriesBarDistance: 5,
+          axisX: {
+            labelInterpolationFnc: function (value) {
+              return value[0];
+            }
+          }
         }
-      }
-    }
-  ]
-];
-///////////////////////////////////////////////// bar ^
+      ]
+    ];
+
+    var legendBar = {
+      names: [],
+      types: ["info", "danger"]
+    };
+    ///////////////////////////////////////////////// bar ^
+    var dataPie = {
+      labels: ["Push", "Pull", "Legs"],
+      series: [this.state.push, this.state.pull, this.state.legs]
+    };
+
+    var legendPie = {
+      names: [],
+      types: ["info", "danger", "warning"]
+    };
+    ///////////////////////////////////////////////// Pie ^
     return (
       <div className="content">
         <Container fluid>

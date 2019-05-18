@@ -485,18 +485,14 @@ var legendPie = {
 // Data for Line Chart
 var dataSales = {
   labels: [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "Mai",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec"
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
   ],
   series: [
     [287, 385, 490, 492, 554, 586, 698, 695],
@@ -506,7 +502,7 @@ var dataSales = {
 };
 var optionsSales = {
   low: 0,
-  high: 4000,
+  high: 800,
   showArea: false,
   height: "245px",
   axisX: {
@@ -520,7 +516,7 @@ var optionsSales = {
     right: 50
   }
 };
-var responsiveSales = [
+let responsiveSales = [
   [
     "screen and (max-width: 640px)",
     {
