@@ -506,7 +506,7 @@ var dataSales = {
 };
 var optionsSales = {
   low: 0,
-  high: 800,
+  high: 4000,
   showArea: false,
   height: "245px",
   axisX: {
@@ -544,7 +544,7 @@ var dataBar = {
     "Feb",
     "Mar",
     "Apr",
-    "Mai",
+    "May",
     "Jun",
     "Jul",
     "Aug",
