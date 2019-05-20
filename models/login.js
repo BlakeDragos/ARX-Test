@@ -19,6 +19,11 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING(35),
         allowNull: false,
         field: "Client"
+      },
+      ClientId: {
+        type: DataTypes.STRING(40),
+        allowNull: false,
+        field: "ClientId"
       }
     },
     {

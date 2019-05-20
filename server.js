@@ -14,9 +14,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // db.Login.create({
-//   Email: "test",
+//   Email: "mr.duncan8@gmail.com",
 //   password: "password",
-//   Client: "Blake Dragos"
+//   Client: "Blake Dragos",
+//   ClientId: "105344EC-07A7-4660-908B-339D47199A6D"
 // })
 
 //   db.Sessions.create({
@@ -272,10 +273,24 @@ app.use(express.json());
 app.post("/api/dash", function (req, res) {
   db.Sessions.findAll({
     where: {
-      Client: req.body.name
+      ClientId: req.body.id
     }
   }).then(function (result) {
     res.json(result);
+  });
+});
+app.post("/api/login", function (req, res) {
+  db.Login.findOne({
+    where: {
+      Email: req.body.email,
+      Password: req.body.password
+    }
+  }).then(function (result) {
+    if(result){
+    res.json(result.ClientId);
+    }else {
+      res.json(false);
+    }
   });
 });
 // Send every request to the React app

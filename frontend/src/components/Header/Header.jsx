@@ -58,7 +58,7 @@ class Header extends Component {
     return (
       <Navbar>
           <NavbarBrand>
-            <a href="#fill">{this.getBrand()}</a>
+            <h3 href="#fill">{this.getBrand()}</h3>
           </NavbarBrand>
           <NavbarToggler onClick={this.mobileSidebarToggle} />
           <Nav tabs>

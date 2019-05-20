@@ -5,15 +5,15 @@ import { Link } from 'react-router-dom'
 class HeaderLinks extends Component {
   render() {
     return (
-        <Nav variant="tabs" defaultActiveKey="/home">
+        <Nav variant="tabs">
           <NavItem>
-          <NavLink tag={Link} to="/dashboard">Dashboard</NavLink>
+          <NavLink tag={Link} to="/app/dashboard">Dashboard</NavLink>
           </NavItem>
           <NavItem>
-          <NavLink tag={Link} to="/user">Profile</NavLink>
+          <NavLink tag={Link} to="/app/user">Profile</NavLink>
           </NavItem>
           <NavItem>
-          <NavLink tag={Link} to="/table">Sessions</NavLink>
+          <NavLink tag={Link} to="/app/table">Sessions</NavLink>
           </NavItem>
         </Nav>
     );

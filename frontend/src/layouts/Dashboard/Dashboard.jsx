@@ -48,7 +48,7 @@ class Dashboard extends Component {
       ),
       level: "success",
       position: "tr",
-      autoDismiss: 15
+      autoDismiss: 10
     });
   }
   componentWillMount(){
@@ -70,7 +70,7 @@ class Dashboard extends Component {
   }
   loadData = () => {
     let body = {
-      name: "Blake Dragos"
+      id: sessionStorage.getItem("ClientId")
     }
     API.getData(body)
       .then(res => {
@@ -89,9 +89,9 @@ class Dashboard extends Component {
           <Header {...this.props} />
           <Switch>
               {/* <Redirect from="/" to="/dashboard"/>; */}
-              <Route exact path="/dashboard" render={(routerProps) => <DashboardPg {...routerProps} {...this.state}/>}/>
-              <Route exact path="/user" render={(routerProps) => <UserProfile {...routerProps} {...this.state}/>}/>
-              <Route exact path="/table" render={(routerProps) => <TableList {...routerProps} {...this.state}/>}/>
+              <Route exact path="/app/dashboard" render={(routerProps) => <DashboardPg {...routerProps} {...this.state}/>}/>
+              <Route exact path="/app/user" render={(routerProps) => <UserProfile {...routerProps} {...this.state}/>}/>
+              <Route exact path="/app/table" render={(routerProps) => <TableList {...routerProps} {...this.state}/>}/>
           </Switch>
           <Footer />
         </div>

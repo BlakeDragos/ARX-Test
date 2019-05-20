@@ -13,8 +13,8 @@ ReactDOM.render(
     <Router>
         <div>
             <Switch>
-            <Route path= "/" component={Dashboard} />
-            <Route exact path="/login" component={Login}/>
+            <Route path= "/app" render={(routerProps) => <Dashboard {...routerProps}/>}/>
+            <Route exact path="/" render={(routerProps) => <Login {...routerProps}/>}/>
             </Switch>
         </div>
     </Router>, document.getElementById("root"));

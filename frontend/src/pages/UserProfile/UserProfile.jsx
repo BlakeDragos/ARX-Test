@@ -28,14 +28,12 @@ class UserProfile extends Component {
                         {
                           label: "Username",
                           type: "text",
-                          bsClass: "form-control",
                           placeholder: "Username",
                           defaultValue: "Username"
                         },
                         {
                           label: "Email address",
                           type: "email",
-                          bsClass: "form-control",
                           placeholder: "Email"
                         }
                       ]}
@@ -46,14 +44,12 @@ class UserProfile extends Component {
                         {
                           label: "First name",
                           type: "text",
-                          bsClass: "form-control",
                           placeholder: "First name",
                           defaultValue: "Blake"
                         },
                         {
                           label: "Last name",
                           type: "text",
-                          bsClass: "form-control",
                           placeholder: "Last name",
                           defaultValue: "Dragos"
                         }
@@ -65,7 +61,6 @@ class UserProfile extends Component {
                         {
                           label: "Adress",
                           type: "text",
-                          bsClass: "form-control",
                           placeholder: "Home Adress",
                           defaultValue:
                             "6039 Pinewood ln"
@@ -78,26 +73,23 @@ class UserProfile extends Component {
                         {
                           label: "City",
                           type: "text",
-                          bsClass: "form-control",
                           placeholder: "City",
                           defaultValue: "Chanhassen"
                         },
                         {
                           label: "Country",
                           type: "text",
-                          bsClass: "form-control",
                           placeholder: "Country",
                           defaultValue: "US"
                         },
                         {
                           label: "Postal Code",
                           type: "number",
-                          bsClass: "form-control",
                           placeholder: "ZIP Code"
                         }
                       ]}
                     />
-                    <Button bsStyle="info" pullRight fill type="submit">
+                    <Button pullRight fill type="submit">
                       Update Profile
                     </Button>
                     <div className="clearfix" />

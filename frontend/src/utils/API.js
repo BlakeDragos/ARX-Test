@@ -6,8 +6,8 @@ export default {
     return axios.post("/api/dash", name);
   },
   // Gets the book with the given id
-  getBook: function(id) {
-    return axios.get("/api/books/" + id);
+  getLogin: function(info) {
+    return axios.post("/api/login/", info);
   },
   // Deletes the book with the given id
   deleteBook: function(id) {

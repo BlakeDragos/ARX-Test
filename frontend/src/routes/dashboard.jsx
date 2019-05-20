@@ -5,19 +5,19 @@ import TableList from "../pages/TableList/TableList";
 
 const dashboardRoutes = [
   {
-    path: "/dashboard",
+    path: "/app/dashboard",
     name: "Dashboard",
     icon: "pe-7s-graph",
     component: Dashboard
   },
   {
-    path: "/user",
+    path: "/app/user",
     name: "User Profile",
     icon: "pe-7s-user",
     component: UserProfile
   },
   {
-    path: "/table",
+    path: "/app/table",
     name: "Table List",
     icon: "pe-7s-note2",
     component: TableList

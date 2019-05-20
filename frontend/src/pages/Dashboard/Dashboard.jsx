@@ -95,7 +95,6 @@ class Dashboard extends Component {
           let yearCheck2 = yearCheck[0].split("-")
           let previous;
           let next;
-          console.log(yearCheck2[0]);
           switch (yearCheck2[0]) {
             case "2019":
               previous = thisYear[(parseInt(yearCheck2[1])-1)];
@@ -151,7 +150,6 @@ class Dashboard extends Component {
         let FirstDate = FirstDateSessions[0].createdAt.split("T");
         recentOutput = SessionOutputArray[SessionOutputArray.length - 1];
         firstOutput = SessionOutputArray[0];
-        console.log(lastYear);
         let percent = Math.round(((recentOutput - firstOutput) / firstOutput) * 100)
         this.setState({
           exercise: data.exercise,
