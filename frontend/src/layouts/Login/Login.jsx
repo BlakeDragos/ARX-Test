@@ -37,8 +37,7 @@ class Login extends Component {
             password: this.state.password
         }
         API.getLogin(body).then(res => {
-            let response = res.data
-            console.log(response);
+            let response = res.data;
             if (response) {
                 sessionStorage.setItem('loggedin', true);
                 sessionStorage.setItem('ClientId', response);

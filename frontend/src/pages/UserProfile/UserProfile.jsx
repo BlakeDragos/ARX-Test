@@ -26,66 +26,26 @@ class UserProfile extends Component {
                       ncols={["col-md-5", "col-md-3"]}
                       proprieties={[
                         {
-                          label: "Username",
-                          type: "text",
-                          placeholder: "Username",
-                          defaultValue: "Username"
-                        },
-                        {
                           label: "Email address",
                           type: "email",
                           placeholder: "Email"
+                        },
+                        {
+                          label: "Password",
+                          type: "text",
+                          placeholder: "Password",
+                          defaultValue: ""
                         }
                       ]}
                     />
                     <FormInputs
-                      ncols={["col-md-6", "col-md-6"]}
+                      ncols={["col-md-6"]}
                       proprieties={[
                         {
-                          label: "First name",
+                          label: "Name",
                           type: "text",
-                          placeholder: "First name",
-                          defaultValue: "Blake"
-                        },
-                        {
-                          label: "Last name",
-                          type: "text",
-                          placeholder: "Last name",
-                          defaultValue: "Dragos"
-                        }
-                      ]}
-                    />
-                    <FormInputs
-                      ncols={["col-md-12"]}
-                      proprieties={[
-                        {
-                          label: "Adress",
-                          type: "text",
-                          placeholder: "Home Adress",
-                          defaultValue:
-                            "6039 Pinewood ln"
-                        }
-                      ]}
-                    />
-                    <FormInputs
-                      ncols={["col-md-4", "col-md-4", "col-md-4"]}
-                      proprieties={[
-                        {
-                          label: "City",
-                          type: "text",
-                          placeholder: "City",
-                          defaultValue: "Chanhassen"
-                        },
-                        {
-                          label: "Country",
-                          type: "text",
-                          placeholder: "Country",
-                          defaultValue: "US"
-                        },
-                        {
-                          label: "Postal Code",
-                          type: "number",
-                          placeholder: "ZIP Code"
+                          placeholder: "Name",
+                          defaultValue: "John Doe"
                         }
                       ]}
                     />
