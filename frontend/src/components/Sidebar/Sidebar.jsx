@@ -10,9 +10,6 @@ import dashboardRoutes from "../../routes/dashboard";
 const liStyle = {
   width: '100%'
 }
-const ulStyle = {
-  width: '100%'
-}
 
 class Sidebar extends Component {
   constructor(props) {
