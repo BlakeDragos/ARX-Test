@@ -4,7 +4,7 @@ import { Navbar, Nav, NavbarBrand, NavbarToggler } from "reactstrap";
 import HeaderLinks from "./HeaderLinks";
 
 import dashboardRoutes from "../../routes/dashboard";
-
+import "../../assets/css/signout.css"
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -60,8 +60,8 @@ class Header extends Component {
           <NavbarBrand>
             <h3 href="#fill">{this.getBrand()}</h3>
           </NavbarBrand>
-          <NavbarToggler onClick={this.mobileSidebarToggle} />
-          <Nav tabs>
+          <NavbarToggler className="toggler" onClick={this.mobileSidebarToggle} />
+          <Nav className="screensize">
           <HeaderLinks />
           </Nav>
       </Navbar>

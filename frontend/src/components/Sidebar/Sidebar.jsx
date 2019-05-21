@@ -7,6 +7,13 @@ import imagine from "../../assets/img/sidebar-3.jpg";
 
 import dashboardRoutes from "../../routes/dashboard";
 
+const liStyle = {
+  width: '100%'
+}
+const ulStyle = {
+  width: '100%'
+}
+
 class Sidebar extends Component {
   constructor(props) {
     super(props);
@@ -50,12 +57,13 @@ class Sidebar extends Component {
           </a>
         </div>
         <div className="sidebar-wrapper">
-          <ul className="nav">
+          <ul className="nav" style={ulStyle} >
             {this.state.width <= 991 ? <HeaderLinks /> : null}
             {dashboardRoutes.map((prop, key) => {
               if (!prop.redirect)
                 return (
                   <li
+                  style={liStyle}
                     className={
                       prop.upgrade
                         ? "active active-pro"

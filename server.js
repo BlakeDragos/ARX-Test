@@ -19,7 +19,6 @@ app.use(express.json());
 //   Client: "Blake Dragos",
 //   ClientId: "105344EC-07A7-4660-908B-339D47199A6D"
 // })
-
 //   db.Sessions.create({
 //     Client: "Blake Dragos",
 //     ClientId: "105344EC-07A7-4660-908B-339D47199A6D",

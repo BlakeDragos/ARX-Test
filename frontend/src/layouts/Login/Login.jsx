@@ -5,7 +5,7 @@ import {
     Button,
 } from 'reactstrap';
 import API from "../../utils/API"
-import Footer from "../../components/Footer/Footer";
+import "../../assets/css/login.css"
 
 class Login extends Component {
     constructor(props) {
@@ -15,6 +15,12 @@ class Login extends Component {
             email: "",
             password: ""
         };
+    }
+    componentDidMount() {
+        let test = sessionStorage.getItem("loggedin");
+        if (test) {
+            this.props.history.push("/app/dashboard");
+        }
     }
     validateForm() {
         return this.state.email.length > 0 && this.state.password.length > 0;
@@ -33,21 +39,22 @@ class Login extends Component {
         API.getLogin(body).then(res => {
             let response = res.data
             console.log(response);
-            if(response){
+            if (response) {
                 sessionStorage.setItem('loggedin', true);
                 sessionStorage.setItem('ClientId', response);
                 this.props.history.push("/app/dashboard");
 
             }
-          })
-          .catch(err => console.log(err));
+        })
+            .catch(err => console.log(err));
 
     }
     render() {
-        return (
-            <div className="wrapper">
+        return [
+            <div className="bg-image"></div>,
+            <div className="unblur">
                 <Container className="App">
-                    <h2>Sign In</h2>
+                    <h2>Login to ARX</h2>
                     <Form onSubmit={this.handleSubmit} className="form">
                         <Col>
                             <FormGroup>
@@ -76,17 +83,17 @@ class Login extends Component {
                             </FormGroup>
                         </Col>
                         <Col>
-                        <Button
-                        block
-                        disabled={!this.validateForm()}
-                        type="submit"
-                        >Login</Button>
+                            <Button
+                                block
+                                color="primary"
+                                disabled={!this.validateForm()}
+                                type="submit"
+                            >Login</Button>
                         </Col>
                     </Form>
                 </Container>
-                <Footer />
             </div>
-        );
+        ];
     }
 }
 

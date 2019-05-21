@@ -37,6 +37,10 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
+    let test = sessionStorage.getItem("loggedin");
+    if(!test){
+      this.props.history.push("/");
+    }
     this.setState({ _notificationSystem: this.refs.notificationSystem });
     var _notificationSystem = this.refs.notificationSystem;
     _notificationSystem.addNotification({

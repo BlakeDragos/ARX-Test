@@ -1,0 +1,44 @@
+@media screen and (max-width: 766px) {
+    .screensize {
+        display: none;
+    }
+    .toggler {
+        color: black;
+        position: relative;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        cursor: hand;
+        right: 20px;
+        top: 6px;
+    }
+    
+    .toggler span{
+        position: absolute;
+        left: 0;
+        box-shadow: none;
+        right: 0;
+        top: 50%;
+        height: .15rem;
+        width: 100%;
+        background-color: black;
+    }
+    .toggler span::before{
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 0;
+        right: 0;
+        height: .15rem;
+        background-color: black;
+    }
+    .toggler span::after{
+        content: "";
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        right: 0;
+        height: .15rem;
+        background-color: black;
+    }
+}
