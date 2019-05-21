@@ -292,6 +292,20 @@ app.post("/api/login", function (req, res) {
     }
   });
 });
+app.put("/api/update", function (req, res){
+  db.Login.update(
+    {
+      Client: req.body.name,
+      Email: req.body.email,
+      password: req.body.password},
+    {where: { ClientId: req.body.ClientId
+    }}).then(function (result) {
+     res.json({
+       name: result.Client,
+       email: result.Email,
+     })
+    });
+});
 // Send every request to the React app
 // Define any API routes before this runs
 app.get("*", function (req, res) {

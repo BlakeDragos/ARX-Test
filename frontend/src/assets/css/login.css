@@ -6,12 +6,12 @@ body, html {
     background-image: url("../img/login2.jpg");
   
     /* Add the blur effect */
-    filter: blur(8px);
-    -webkit-filter: blur(8px);
-  
+    filter: blur(7px);
+    -webkit-filter: blur(7px);
+    position: absolute;
     /* Full height */
     height: 100%; 
-  
+    width: 100%;
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;

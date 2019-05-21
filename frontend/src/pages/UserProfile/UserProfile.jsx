@@ -10,8 +10,47 @@ import { FormInputs } from "../../components/FormInputs/FormInputs";
 import { UserCard } from "../../components/UserCard/UserCard";
 import Button from "../../components/CustomButton/CustomButton";
 import avatar from "../../assets/img/faces/face-0.jpg";
-
+import API from "../../utils/API";
 class UserProfile extends Component {
+  constructor(props) {
+    super(props);
+    this.loggedIn = sessionStorage.getItem('loggedin');
+    this.state = {
+      email: "",
+      password: "",
+      name: ""
+    };
+  }
+
+
+  validateForm() {
+    return this.state.email.length > 0 && this.state.password.length > 0;
+  }
+  handleChange = event => {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+  }
+  
+  handleSubmit = event => {
+    event.preventDefault();
+    let body = {
+        email: this.state.email,
+        password: this.state.password,
+        name: this.state.name,
+        ClientId: sessionStorage.getItem('ClientId')
+    }
+    API.updateLogin(body).then(res => {
+      alert("updated");
+      this.setState({
+        email: res.data.Email,
+        name: res.data.Client
+      });
+    })
+        .catch(err => console.log(err));
+
+}
+
   render() {
     return (
       <div className="content">
@@ -28,13 +67,18 @@ class UserProfile extends Component {
                         {
                           label: "Email address",
                           type: "email",
-                          placeholder: "Email"
+                          id: "email",
+                          value: this.state.email,
+                          placeholder: "Email",
+                          onChange: this.handleChange
                         },
                         {
                           label: "Password",
                           type: "text",
+                          id: "password",
+                          value: this.state.password,
                           placeholder: "Password",
-                          defaultValue: ""
+                          onChange: this.handleChange
                         }
                       ]}
                     />
@@ -44,12 +88,19 @@ class UserProfile extends Component {
                         {
                           label: "Name",
                           type: "text",
+                          id: "name",
+                          value: this.state.name,
                           placeholder: "Name",
-                          defaultValue: "John Doe"
+                          onChange: this.handleChange
                         }
                       ]}
                     />
-                    <Button pullRight fill type="submit">
+                    <Button
+                    pullRight
+                    fill 
+                    type="submit"
+                    color="primary"
+                    disabled={!this.validateForm()}>
                       Update Profile
                     </Button>
                     <div className="clearfix" />

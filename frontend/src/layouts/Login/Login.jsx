@@ -49,50 +49,52 @@ class Login extends Component {
 
     }
     render() {
-        return [
-            <div className="bg-image"></div>,
-            <div className="unblur">
-                <Container className="App">
-                    <h2>Login to ARX</h2>
-                    <Form onSubmit={this.handleSubmit} className="form">
-                        <Col>
-                            <FormGroup>
-                                <Label>Email</Label>
-                                <Input
-                                    type="email"
-                                    name="email"
-                                    id="email"
-                                    placeholder="myemail@email.com"
-                                    value={this.state.email}
-                                    onChange={this.handleChange}
-                                />
-                            </FormGroup>
-                        </Col>
-                        <Col>
-                            <FormGroup>
-                                <Label for="examplePassword">Password</Label>
-                                <Input
-                                    type="password"
-                                    name="password"
-                                    id="password"
-                                    placeholder="********"
-                                    value={this.state.password}
-                                    onChange={this.handleChange}
-                                />
-                            </FormGroup>
-                        </Col>
-                        <Col>
-                            <Button
-                                block
-                                color="primary"
-                                disabled={!this.validateForm()}
-                                type="submit"
-                            >Login</Button>
-                        </Col>
-                    </Form>
-                </Container>
+        return (
+            <div>
+                <div className="bg-image"></div>
+                <div className="unblur">
+                    <Container className="App">
+                        <h2>Login to ARX</h2>
+                        <Form onSubmit={this.handleSubmit} className="form">
+                            <Col>
+                                <FormGroup>
+                                    <Label>Email</Label>
+                                    <Input
+                                        type="email"
+                                        name="email"
+                                        id="email"
+                                        placeholder="myemail@email.com"
+                                        value={this.state.email}
+                                        onChange={this.handleChange}
+                                    />
+                                </FormGroup>
+                            </Col>
+                            <Col>
+                                <FormGroup>
+                                    <Label for="examplePassword">Password</Label>
+                                    <Input
+                                        type="password"
+                                        name="password"
+                                        id="password"
+                                        placeholder="********"
+                                        value={this.state.password}
+                                        onChange={this.handleChange}
+                                    />
+                                </FormGroup>
+                            </Col>
+                            <Col>
+                                <Button
+                                    block
+                                    color="primary"
+                                    disabled={!this.validateForm()}
+                                    type="submit"
+                                >Login</Button>
+                            </Col>
+                        </Form>
+                    </Container>
+                </div>
             </div>
-        ];
+        );
     }
 }
 
