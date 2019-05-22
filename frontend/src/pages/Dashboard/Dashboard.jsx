@@ -342,7 +342,7 @@ class Dashboard extends Component {
             <Col md={8}>
               <Card
                 id="chartActivity"
-                title="Sessions this Year"
+                title="Sessions Over Time"
                 category="by Per Month"
                 stats={this.state.recentDate}
                 statsIcon="fa fa-check"
