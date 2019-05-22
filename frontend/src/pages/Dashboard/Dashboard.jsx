@@ -3,6 +3,7 @@ import ChartistGraph from "react-chartist";
 import { Container, Row, Col } from "reactstrap";
 import { Card } from "../../components/Card/Card";
 import { StatsCard } from "../../components/StatsCard/StatsCard";
+import "../../assets/css/graph.css";
 
 class Dashboard extends Component {
 
@@ -184,7 +185,7 @@ class Dashboard extends Component {
     };
     chartValues.series.push(this.state.SessionOutputArray);
     for (let i = 0; i < this.state.SessionOutputArray.length; i++) {
-      chartValues.labels.push((i + 1) + "S");
+      chartValues.labels.push((i + 1));
     };
     let ChartOptions = {
       low: (Math.min(this.state.SessionOutputArray) - 500),
@@ -322,7 +323,7 @@ class Dashboard extends Component {
                 stats={this.state.SessionOutputArray.length + " Total Sessions Starting " + this.state.firstDate}
                 content={
                   <div className="ct-chart">
-                    <ChartistGraph
+                    <ChartistGraph className="graph"
                       data={chartValues}
                       type="Line"
                       options={ChartOptions}

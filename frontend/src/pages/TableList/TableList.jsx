@@ -74,7 +74,29 @@ class TableList extends Component {
       <div className="content">
         <Container fluid>
           <Row>
-            <Col sm={12} md={6}>
+            <Col sm={12} md={12}>
+              <Card
+                statsIcon="fa fa-history"
+                id="chartHours"
+                title="Selected Sessions"
+                category=""
+                stats=""
+                content={
+                  <div className="ct-chart">
+                    <ChartistGraph
+                      data={dataSales}
+                      type="Line"
+                      options={optionsSales}
+                      responsiveOptions={responsiveSales}
+                    />
+                  </div>
+                }
+                legend={
+                  <div className="legend">{this.createLegend(legendSales)}</div>
+                }
+              />
+            </Col>
+            <Col sm={12} md={12}>
               <Card
                 title="Sessions"
                 category="All of your sessions"
@@ -105,28 +127,6 @@ class TableList extends Component {
                       })}
                     </tbody>
                   </Table>
-                }
-              />
-            </Col>
-            <Col sm={12} md={6}>
-              <Card
-                statsIcon="fa fa-history"
-                id="chartHours"
-                title="Selected Sessions"
-                category=""
-                stats=""
-                content={
-                  <div className="ct-chart">
-                    <ChartistGraph
-                      data={dataSales}
-                      type="Line"
-                      options={optionsSales}
-                      responsiveOptions={responsiveSales}
-                    />
-                  </div>
-                }
-                legend={
-                  <div className="legend">{this.createLegend(legendSales)}</div>
                 }
               />
             </Col>
